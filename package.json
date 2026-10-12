@@ -1,0 +1,8 @@
+{
+  "name": "candy-catch",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Candy Catch – moonlit Halloween browser mini-game (Canvas), runs from file://",
+  "scripts": { "build": "node tools/build.mjs" },
+  "devDependencies": { "esbuild": "^0.28.2" }
+}

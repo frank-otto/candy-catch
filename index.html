@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Candy Catch – a moonlit Halloween mini-game</title>
+<meta name="description" content="Catch falling candy, grab golden bonuses, dodge spiders. A 50-second Halloween browser game. EN/DE, kids mode.">
+<meta name="theme-color" content="#0b0a1f">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Candy Catch game"></canvas>
+<div id="hud">
+  <div class="chip"><small data-t="score">Score</small><b id="hScore">0</b></div>
+  <div class="chip" id="hTimeBox"><small data-t="time">Time</small><b id="hTime">50</b></div>
+  <div class="chip"><small data-t="combo">Combo</small><b id="hCombo">—</b></div>
+  <div class="chip lives"><b id="hLives"></b></div>
+</div>
+<div id="top">
+  <button id="btnSound" class="pill on" aria-label="Sound">🔊</button>
+  <button id="btnLang" class="pill">DE</button>
+</div>
+<section id="menu" class="panel show">
+  <h1 data-t="title">Candy Catch</h1>
+  <p class="sub" data-t="sub"></p>
+  <ul class="how">
+    <li><span>🎃</span><em data-t="h1"></em></li>
+    <li><span>🍬</span><em data-t="h2"></em></li>
+    <li><span>🕷️</span><em id="h3"></em></li>
+  </ul>
+  <button id="btnPlay" class="big" data-t="play">Play</button>
+  <button id="btnKids" class="toggle" aria-pressed="false"><i></i><span data-t="kids">Kids mode</span></button>
+</section>
+<section id="end" class="panel">
+  <h2 id="eTitle"></h2>
+  <div id="eScore" class="score">0</div>
+  <div id="eBest" class="best"></div>
+  <div id="eStats" class="stats"></div>
+  <label class="name"><span data-t="name">Your name</span><input id="eName" maxlength="18" value="Player" autocomplete="off"></label>
+  <div class="row"><button id="btnCard" data-t="card"></button><button id="btnShare" data-t="share"></button></div>
+  <div class="row"><button id="btnAgain" class="big" data-t="again"></button><button id="btnMenu" data-t="menu"></button></div>
+</section>
+<script src="js/sounds-src.js"></script>
+<script src="js/game.bundle.js"></script>
+</body>
+</html>
