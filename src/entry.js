@@ -2,7 +2,7 @@ import { T } from './i18n.js';
 import * as A from './audio.js';
 import { makeBackground, drawStars, drawCandy, drawSpider, drawBucket } from './draw.js';
 
-const ROUND = 50, LIVES = 3, URL_TXT = 'frank-otto.github.io/candy-catch';
+const ROUND = 50, LIVES = 3, URL_TXT = '@Frank_AI_Lab';
 const $ = id => document.getElementById(id);
 const ls = { get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
 let seed = (window.__ccSeed || (Date.now() & 0xffffff)) >>> 0;
@@ -189,7 +189,7 @@ async function saveCard(share) {
   const c = makeCard(); window.__ccLastCard = { w: c.width, h: c.height };
   const blob = await new Promise(r => c.toBlob(r, 'image/png'));
   const file = new File([blob], 'candy-catch-highscore.png', { type: 'image/png' });
-  if (share && navigator.canShare && navigator.canShare({ files: [file] })) { try { await navigator.share({ files: [file], text: `Candy Catch: ${S.score} — ${t('cardLine')} https://${URL_TXT}/` }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
+  if (share && navigator.canShare && navigator.canShare({ files: [file] })) { try { await navigator.share({ files: [file], text: `Candy Catch: ${S.score} — ${t('cardLine')} ${URL_TXT}` }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'candy-catch-highscore.png'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
 }
 

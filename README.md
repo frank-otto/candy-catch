@@ -2,7 +2,7 @@
 
 A small moonlit Halloween browser game. Move the pumpkin basket, catch falling candy, grab golden bonuses and dodge the spiders.
 
-**Play:** https://frank-otto.github.io/candy-catch/
+**Play:** [online version (GitHub Pages)](https://frank-otto.github.io/candy-catch/)
 
 ## How to play (in 10 seconds)
 - Move the basket with the **mouse**, by **touch** (tap or drag) or with **← →**.
