@@ -11,8 +11,10 @@ const lerp = (a, b, k) => a + (b - a) * k, clamp = (v, a, b) => Math.max(a, Math
 
 const cv = $('game'), g = cv.getContext('2d');
 let W = 0, H = 0, U = 1, DPR = 1, BG = null, stars = [], bandL = 0, bandR = 0;
+// language follows the phone/browser (German devices → DE, else EN) until the player picks one with the DE/EN toggle
+function autoLang() { try { const l = (navigator.languages && navigator.languages[0]) || navigator.language || ''; return /^de\b/i.test(l) ? 'de' : 'en'; } catch (e) { return 'en'; } }
 const S = {
-  state: 'menu', lang: ls.get('cc-lang', 'en'), kids: ls.get('cc-kids', '0') === '1',
+  state: 'menu', lang: ls.get('cc-lang', '') || autoLang(), kids: ls.get('cc-kids', '0') === '1',
   score: 0, time: ROUND, el: 0, combo: 0, maxCombo: 0, caught: 0, golds: 0, lives: LIVES, gt: 0, spawnT: 0.4, shake: 0, flash: 0, newBest: false,
   best: +ls.get('cc-best', '0') || 0, name: ls.get('cc-name', 'Player') || 'Player', endT: 0, endReason: ''
 };
@@ -40,7 +42,7 @@ function applyLang() {
   document.documentElement.lang = S.lang;
   document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
   $('h3').textContent = S.kids ? t('h3k') : t('h3');
-  $('btnLang').textContent = S.lang === 'en' ? 'DE' : 'EN';
+  $('btnLang').textContent = S.lang === 'en' ? 'DE' : 'EN'; $('btnLang').setAttribute('aria-label', S.lang === 'en' ? 'Deutsch' : 'English');
   $('btnKids').classList.toggle('on', S.kids); $('btnKids').setAttribute('aria-pressed', S.kids);
   $('btnSound').classList.toggle('on', !A.isMuted());
   hud(true);
@@ -220,5 +222,5 @@ let last = performance.now();
 function loop(now) { const dt = (now - last) / 1000; last = now; if (!window.__ccManual) { step(dt); render(); } requestAnimationFrame(loop); }
 requestAnimationFrame(loop);
 window.__cc = { S, ents: () => ents.map(e => ({ id: e.id, type: e.type, x: e.x, y: e.y, r: e.r, vy: e.vy })), bucket, start, end, step: (dt, n = 1) => { for (let i = 0; i < n; i++) step(dt); render(); },
-  log: A.log, card: () => { const c = makeCard(); return c.toDataURL('image/png'); }, spawnAt(type, x, y) { spawn(); const e = ents[ents.length - 1]; e.type = type; e.x = e.x0 = x; e.y = y; e.r = 24 * U; return e.id; }, U: () => U, band: () => [bandL, bandR] };
+  audioState: () => A.audioState(), log: A.log, card: () => { const c = makeCard(); return c.toDataURL('image/png'); }, spawnAt(type, x, y) { spawn(); const e = ents[ents.length - 1]; e.type = type; e.x = e.x0 = x; e.y = y; e.r = 24 * U; return e.id; }, U: () => U, band: () => [bandL, bandR] };
 document.body.classList.add('ready');

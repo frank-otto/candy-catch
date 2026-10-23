@@ -11,7 +11,7 @@ A small moonlit Halloween browser game. Move the pumpkin basket, catch falling c
 - **Spiders** cost one of 3 lives and break the combo.
 - A round lasts **50 seconds** and the tempo rises every second.
 
-Extras: English by default with a **DE** toggle, a **kids mode** (slower, no spiders), and a shareable **highscore card** (PNG, 1080×1350; the default name is "Player").
+Extras: the language follows your phone or browser (German devices get German, everything else English), with a small **DE/EN** toggle; a **kids mode** (slower, no spiders), and a shareable **highscore card** (PNG, 1080×1350; the default name is "Player").
 
 ## Run locally
 Open `index.html` directly (works from `file://`, no server needed). To rebuild after editing `src/`:
@@ -22,6 +22,7 @@ This bundles `src/` with esbuild into one classic script (`js/game.bundle.js`) a
 
 ## Tests
 `python3 test/test_game.py` (Playwright + Chrome, headless): load without console errors, catching, avoiding, golden bonus, end screen, PNG card size, DE toggle, kids mode, mobile tap.
+`python3 test/test_mobile.py`: 8 phone configurations (iPhone 13 / 8 / SE in WebKit, Pixel 7 in Chromium, portrait and landscape). It checks that every button is tappable and at least 44 px, that nothing is cut off or scrolls, the auto language, one tap to play with sound, touch control and flat memory.
 
 ## Credits
 All sounds are recorded CC0 samples (see `LICENSES/SOUNDS.md`). Font: Fredoka (SIL Open Font License 1.1). Canvas 2D, no other runtime dependencies.

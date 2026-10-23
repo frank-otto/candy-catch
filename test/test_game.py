@@ -32,7 +32,7 @@ async def main():
         check('CC0 sounds decoded', n == 15, n)
         await pg.mouse.move(640, 500); await pg.wait_for_timeout(2500); await pg.screenshot(path=OUT + 'shot-play.png')
         # deterministic logic checks
-        await pg.evaluate('window.__ccManual = true; __cc.S.spawnT = 999; __cc.S.lives = 3')
+        await pg.evaluate('window.__ccManual = true; __cc.S.spawnT = 999; __cc.step(1/60, 300); __cc.S.spawnT = 999; __cc.S.lives = 3')  # let candy/spiders still falling from the real-time part drop out first (was flaky)
         await pg.evaluate('(() => { for (const e of __cc.ents()) {} })()')
         bx = await pg.evaluate('__cc.bucket.x'); by = await pg.evaluate('__cc.bucket.y - __cc.bucket.h')
         s0 = await pg.evaluate('__cc.S.score')
